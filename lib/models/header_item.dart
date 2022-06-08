@@ -1,10 +1,13 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 
-class HeaderItem extends StatelessWidget {
-  const HeaderItem({Key? key}) : super(key: key);
+class HeaderItem {
+  final String title;
+  final VoidCallback onTap;
+  final bool isButton;
 
-  @override
-  Widget build(BuildContext context) {
-    return Container();
-  }
+  HeaderItem({
+    required this.title,
+    required this.onTap,
+    this.isButton = false
+  });
 }
