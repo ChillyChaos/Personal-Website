@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/utils/constants.dart';
+import 'package:personal_website/utils/globals.dart';
+import 'package:personal_website/utils/screen_helper.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import '../models/header_item.dart';
@@ -23,20 +25,22 @@ class HeaderRow extends StatelessWidget {
         Condition.largerThan(name: MOBILE),
       ],
       child: Row(
-        children: headerItems.map((item) => item.isButton ? MouseRegion(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children:
+        headerItems.map((item) => item.isButton ? MouseRegion(
           cursor: SystemMouseCursors.click,
           child: Container(
             decoration: BoxDecoration(
               color: myDangerColor,
               borderRadius: BorderRadius.circular(8.0),
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 20.0,vertical: 5.0),
+            padding: const EdgeInsets.symmetric(horizontal: 30.0,vertical: 5.0),
             child: TextButton(
               onPressed: item.onTap,
               child: Text(
                 item.title,
                 style: const TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 15.0,
                   fontWeight: FontWeight.bold
                 ),
@@ -46,13 +50,13 @@ class HeaderRow extends StatelessWidget {
         ) : MouseRegion(
           cursor: SystemMouseCursors.click,
           child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 25.0),
+            margin: const EdgeInsets.symmetric(horizontal: 40.0),
             child: GestureDetector(
               onTap: item.onTap,
               child: Text(
                 item.title,
                 style: const TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                   fontSize: 15.0,
                   fontWeight: FontWeight.bold,
                 ),
@@ -71,14 +75,52 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return buildHeader();
+    return ScreenHelper(
+      desktop: Padding(
+        padding: const EdgeInsets.symmetric(
+          vertical: 30.0,
+        ),
+        child: buildHeader(),
+      ),
+      mobile: buildMobileHeader(),
+      tablet: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 15.0),
+        child: buildHeader(),
+      ),
+
+    );
+  }
+
+  Widget buildMobileHeader() {
+    return SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+              horizontal: 16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const SizedBox(),
+              GestureDetector(
+                onTap: (){
+                  Globals.scaffoldKey.currentState?.openEndDrawer();
+                },
+                child: const Icon(
+                  Icons.menu,
+                  color: Colors.white,
+                  size: 40.0,
+                ),
+              )
+            ],
+          )
+          ,)
+    );
   }
 
   Widget buildHeader() {
     return Container(
       color: myPrimaryColor,
       child: const Center(child: HeaderRow()),
-      padding: const EdgeInsets.only(left: 50.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
     );
   }
 }

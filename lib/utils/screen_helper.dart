@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class SreenHelper extends StatelessWidget {
+class ScreenHelper extends StatelessWidget {
   final Widget mobile;
   final Widget tablet;
   final Widget desktop;
 
-  const SreenHelper({Key? key, required this.mobile, required this.tablet, required this.desktop})
+  const ScreenHelper({Key? key, required this.mobile, required this.tablet, required this.desktop})
       : super(key: key);
 
   static bool isMobile(BuildContext context) =>
