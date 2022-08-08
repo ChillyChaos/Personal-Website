@@ -10,8 +10,7 @@ List<HeaderItem> headerItems = [
   HeaderItem(title: "HOME", onTap: (){}),
   HeaderItem(title: "ABOUT ME", onTap: (){}),
   HeaderItem(title: "PROJECTS", onTap: (){}),
-  HeaderItem(title: "RESUME", onTap: (){}),
-  HeaderItem(title: "CONTACT", onTap: (){}, isButton: true),
+  HeaderItem(title: "RESUME", onTap: (){}, isButton: true),
 ];
 
 class HeaderRow extends StatelessWidget {
@@ -34,7 +33,7 @@ class HeaderRow extends StatelessWidget {
               color: myDangerColor,
               borderRadius: BorderRadius.circular(8.0),
             ),
-            padding: const EdgeInsets.symmetric(horizontal: 30.0,vertical: 5.0),
+            padding: const EdgeInsets.symmetric(horizontal: 15.0,vertical: 5.0),
             child: TextButton(
               onPressed: item.onTap,
               child: Text(
@@ -50,7 +49,7 @@ class HeaderRow extends StatelessWidget {
         ) : MouseRegion(
           cursor: SystemMouseCursors.click,
           child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 40.0),
+            margin: const EdgeInsets.symmetric(horizontal: 20.0),
             child: GestureDetector(
               onTap: item.onTap,
               child: Text(
@@ -79,12 +78,21 @@ class Header extends StatelessWidget {
       desktop: Padding(
         padding: const EdgeInsets.symmetric(
           vertical: 30.0,
+          horizontal: 40.0
         ),
         child: buildHeader(),
       ),
-      mobile: buildMobileHeader(),
+      mobile: Padding(
+          padding: const EdgeInsets.symmetric(
+            vertical: 10.0,
+            horizontal: 15.0
+          ),
+          child: buildMobileHeader()),
       tablet: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 15.0),
+        padding: const EdgeInsets.symmetric(
+            vertical: 15.0,
+          horizontal: 20.0
+        ),
         child: buildHeader(),
       ),
 
@@ -99,7 +107,15 @@ class Header extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const SizedBox(),
+              const Text(
+                  "J.M.",
+                  style: TextStyle(
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white
+                ),
+              ),
+              const Spacer(),
               GestureDetector(
                 onTap: (){
                   Globals.scaffoldKey.currentState?.openEndDrawer();
@@ -119,7 +135,20 @@ class Header extends StatelessWidget {
   Widget buildHeader() {
     return Container(
       color: myPrimaryColor,
-      child: const Center(child: HeaderRow()),
+      child: Row(
+        children: const [
+          Text(
+              "Josh M.",
+              style: TextStyle(
+                fontSize: 30.0,
+                fontWeight: FontWeight.bold,
+                color: Colors.white
+              ),
+          ),
+          Spacer(),
+          HeaderRow(),
+        ],
+      ),
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
     );
   }
