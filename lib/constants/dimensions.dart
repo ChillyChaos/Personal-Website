@@ -1,2 +1,2 @@
 // breakpoint for mobile screens
-const mobileWidth = 480;
+const mobileWidth = 501;
