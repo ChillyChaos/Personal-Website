@@ -19,25 +19,25 @@ class HomeScreen extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(50),
                 color: myFirstColor,
-                height: 300,
+                height: 250,
                 child: const Center(
                   child: Text(
                     " Hi! My name is Joshua Martinez.",
-                    style: TextStyle(fontSize: 40, color: Colors.white),
+                    style: TextStyle(fontSize: 30, color: Colors.white),
                   ),
                 ),
               ),
             ),
           ),
           Flexible(
-            flex: 4,
+            flex: 2,
             child: ClipOval(
               child: Container(
                 color: myFirstColor,
                 child: ClipOval(
                   child: Image.asset(
                     "images/profile_photo.jpg",
-                    scale: 2,
+                    scale: 3,
                   ),
                 ),
               ),
@@ -50,11 +50,11 @@ class HomeScreen extends StatelessWidget {
               child: Container(
                 padding: const EdgeInsets.all(25),
                 color: myFirstColor,
-                height: 300,
+                height: 250,
                 child: const Center(
                   child: Text(
                     " I'm an aspiring software developer based out of Vancouver, BC",
-                    style: TextStyle(fontSize: 40, color: Colors.white),
+                    style: TextStyle(fontSize: 30, color: Colors.white),
                   ),
                 ),
               ),

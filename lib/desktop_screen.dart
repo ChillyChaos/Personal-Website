@@ -3,6 +3,7 @@ import 'package:personal_website/about_screen.dart';
 import 'package:personal_website/colours/colours.dart';
 import 'package:personal_website/home_screen.dart';
 import 'package:personal_website/logo.dart';
+import 'package:personal_website/projects_screen.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class DesktopScreen extends StatefulWidget {
@@ -103,11 +104,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
               return AboutScreen();
             }
             if (index == 2) {
-              return Container(
-                color: Colors.blue,
-                height: 600,
-                child: Text("Projects"),
-              );
+              return ProjectsScreen();
             }
             if (index == 3) {
               return Container(
