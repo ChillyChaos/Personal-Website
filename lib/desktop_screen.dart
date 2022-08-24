@@ -5,6 +5,7 @@ import 'package:personal_website/home_screen.dart';
 import 'package:personal_website/logo.dart';
 import 'package:personal_website/projects_screen.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DesktopScreen extends StatefulWidget {
   const DesktopScreen({Key? key}) : super(key: key);
@@ -14,6 +15,16 @@ class DesktopScreen extends StatefulWidget {
 }
 
 class _DesktopScreenState extends State<DesktopScreen> {
+
+  launchResume(String url) async {
+    Uri myUri = Uri.parse(url);
+    if (await canLaunchUrl(myUri)) {
+      await launchUrl(myUri);
+    } else {
+      throw "Could not launch $url";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final itemController = ItemScrollController();
@@ -41,52 +52,36 @@ class _DesktopScreenState extends State<DesktopScreen> {
           Icon(Icons.computer),
           Spacer(),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               MaterialButton(
                   onPressed: () {
                     scrollToHome();
                   },
-                  child: const Text(
-                    "HOME",
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white),
-                  )),
+                  child: HeaderOption("HOME")
+              ),
               MaterialButton(
                   onPressed: () {
                     scrollToAbout();
                   },
-                  child: const Text(
-                    "ABOUT",
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white),
-                  )),
+                  child: HeaderOption("ABOUT")
+              ),
               MaterialButton(
                   onPressed: () {
                     scrollToProjects();
                   },
-                  child: const Text(
-                    "PROJECTS",
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white),
-                  )),
+                  child: HeaderOption("PROJECTS")
+                  ),
               MaterialButton(
                   onPressed: () {
                     scrollToContact();
                   },
-                  child: const Text(
-                    "CONTACT",
-                    style: TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.white),
-                  )),
-              ElevatedButton(onPressed: () {}, child: Text("RESUME"))
+                  child: HeaderOption("CONTACT")),
+              ElevatedButton(onPressed: () {
+                const url = "https://drive.google.com/file/d/1mSXPUxhDqKOdrbyQESfGXZ6fbpFYkVfa/view?usp=sharing";
+                launchResume(url);
+
+              }, child: Text("RESUME", style: TextStyle(fontSize: 20),))
             ],
           ),
             ],
@@ -117,5 +112,14 @@ class _DesktopScreenState extends State<DesktopScreen> {
           },
           itemScrollController: itemController,
         ));
+  }
+
+  HeaderOption(String name) {
+    return Text(
+        name,
+        style: TextStyle(
+        fontSize: 20,
+        fontWeight: FontWeight.w500,
+        color: Colors.white));
   }
 }

@@ -17,6 +17,9 @@ class ProjectsScreen extends StatelessWidget {
     final List<String> myImages2 = [
       "assets/images/Greenscore_Screenshot.png",
       "assets/images/Greenscore_Screenshot2.png",
+      "assets/images/greenscore1.png",
+      "assets/images/greenscore2.png",
+      "assets/images/greenscore3.png",
     ];
 
     final List<String> myImages3 = [
@@ -27,17 +30,17 @@ class ProjectsScreen extends StatelessWidget {
     return Column(
       children: [
         Container(
-          color: myBackgroundColor,
+          color: myThirdColor,
           height: 100,
           width: MediaQuery.of(context).size.width,
           child: Center(
             child: Container(
-              height: 50,
-              width: 300,
+              height: 90,
+              width: 400,
               color: myFirstColor,
               child: Center(
                 child: Text("PROJECTS", style: GoogleFonts.lato(
-                  fontSize: 30,
+                  fontSize: 60,
                   color: Colors.white,
                   fontWeight: FontWeight.bold
                 ),),
@@ -45,11 +48,28 @@ class ProjectsScreen extends StatelessWidget {
             ),
           ),
         ),
-        CarouselSlider.builder(itemCount: myImages2.length, itemBuilder: (context, index, realIndex) {
-          final myImage = myImages2[index];
-          return buildImage(myImage, index);
+        // GridView(
+        //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
+        //   children: [
+        //     Image.asset(myImages2[0]),
+        //     Image.asset(myImages2[1]),
+        //     Image.asset(myImages2[2]),
+        //   ],
+        // ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text("TESTER"),
+            Container(
+              width: 400,
+              child: CarouselSlider.builder(itemCount: myImages2.length, itemBuilder: (context, index, realIndex) {
+                final myImage = myImages2[index];
+                return buildImage(myImage, index);
 
-        }, options: CarouselOptions(height: 400)),
+              }, options: CarouselOptions(height: 400)),
+            ),
+          ],
+        ),
         CarouselSlider.builder(itemCount: myImages3.length, itemBuilder: (context, index, realIndex) {
           final myImage = myImages3[index];
           return buildImage(myImage, index);
@@ -62,8 +82,8 @@ class ProjectsScreen extends StatelessWidget {
 
   Widget buildImage(String myImage, int index) => Container(
     // margin: EdgeInsets.symmetric(horizontal: 12),
-    width: 500,
+    width: 400,
     color: Colors.white,
-    child: Image.asset(myImage,fit: BoxFit.cover,),
+    child: Image.asset(myImage,fit: BoxFit.contain,),
   );
 }
