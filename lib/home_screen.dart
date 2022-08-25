@@ -1,12 +1,16 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_website/colours/colours.dart';
+import 'package:personal_website/widgets/title_box.dart';
+import 'package:personal_website/url_launcher.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       height: 800,
       color: myThirdColor,
@@ -18,15 +22,11 @@ class HomeScreen extends StatelessWidget {
             children: [
               Flexible(
                 flex: 2,
-                child: ClipOval(
-                  child: Container(
-                    color: myFirstColor,
-                    child: ClipOval(
-                      child: Image.asset(
-                        "images/profile_photo.jpg",
-                        scale: 3,
-                      ),
-                    ),
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(const Radius.circular(20)),
+                  child: Image.asset(
+                    "images/profile.jpg",
+                    scale: 7,
                   ),
                 ),
               ),
@@ -43,40 +43,40 @@ class HomeScreen extends StatelessWidget {
                         animatedTexts: [
                           TypewriterAnimatedText(
                             "Hi! My name is Joshua Martinez",
-                            textStyle: TextStyle(fontSize: 30, color: Colors.white),
+                            textStyle: const TextStyle(fontSize: 30, color: Colors.white),
                           ),
-                          TypewriterAnimatedText(
+                          TyperAnimatedText(
                             "I'm from Vancouver, BC",
-                            textStyle: TextStyle(fontSize: 30, color: Colors.white),
+                            textStyle: const TextStyle(fontSize: 30, color: Colors.white),
                           ),
-                          TypewriterAnimatedText(
+                          RotateAnimatedText(
                             "I'm from BCIT's CST program",
-                            textStyle: TextStyle(fontSize: 30, color: Colors.white),
+                            textStyle: const TextStyle(fontSize: 30, color: Colors.white),
                           ),
-                          TypewriterAnimatedText(
-                            "I love the Halo series",
-                            textStyle: TextStyle(fontSize: 30, color: Colors.white),
-                          ),
-                          TypewriterAnimatedText(
+                          FadeAnimatedText(
                             "I aspire to become a software developer",
-                            textStyle: TextStyle(fontSize: 30, color: Colors.white),
+                            textStyle: const TextStyle(fontSize: 30, color: Colors.white),
                           ),
-                          TypewriterAnimatedText(
-                            "Anyone still reading this?",
-                            textStyle: TextStyle(fontSize: 30, color: Colors.white),
+                          RotateAnimatedText(
+                            "Are you still reading this?",
+                            textStyle: const TextStyle(fontSize: 30, color: Colors.white),
                           ),
-                          TypewriterAnimatedText(
+                          WavyAnimatedText(
+                            "I love the Halo series",
+                            textStyle: const TextStyle(fontSize: 30, color: Colors.white),
+                          ),
+                          TyperAnimatedText(
                             "Question of the day: Are there more doors or wheels in the world?",
-                            textStyle: TextStyle(fontSize: 30, color: Colors.white),
+                            textStyle: const TextStyle(fontSize: 30, color: Colors.white),
                           ),
-                          TypewriterAnimatedText(
+                          RotateAnimatedText(
                             "\"I am Iron Man\"",
-                            textStyle: TextStyle(fontSize: 30, color: Colors.white),
+                            textStyle: const TextStyle(fontSize: 30, color: Colors.white),
                           ),
                         ],
                         isRepeatingAnimation: true,
                         repeatForever: true,
-                        pause: Duration(seconds: 2),
+                        pause: const Duration(seconds: 2),
                       ),
                     ),
                   ),
@@ -93,14 +93,28 @@ class HomeScreen extends StatelessWidget {
                 child: Row(
                   // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Spacer(),
+                    const Spacer(),
                     IconButton(
                       iconSize: 50,
-                        onPressed: () {}, icon: Image.network("https://img.icons8.com/metro/308/ffffff/linkedin.png")),
+                        onPressed: () {
+                          const url = "https://www.linkedin.com/in/jshmartnz/";
+                          launchLink(url);
+                        }, icon: Image.network("https://img.icons8.com/metro/308/ffffff/linkedin.png")),
                     IconButton(
                       iconSize: 60,
-                        onPressed: () {}, icon: Image.network("https://img.icons8.com/material-rounded/384/ffffff/github.png")),
-                    Spacer()
+                        onPressed: () {
+                          const url = "https://github.com/jshmartin";
+                          launchLink(url);
+                        }, icon: Image.network("https://img.icons8.com/material-rounded/384/ffffff/github.png")),
+                    IconButton(
+                      iconSize: 60,
+                        color: Colors.white,
+                        onPressed: () {
+                          const url = "https://drive.google.com/file/d/1mSXPUxhDqKOdrbyQESfGXZ6fbpFYkVfa/view?usp=sharing";
+                          launchLink(url);
+                        }, icon: const Icon(Icons.email)),
+                    const Spacer(),
+
                   ],
                 ),
               ),

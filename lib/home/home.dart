@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../desktop_screen.dart';
 import '../mobile_screen.dart';
-import '../responsive_layout_maker.dart';
+import '../widgets/responsive_layout_maker.dart';
 
 
 class Home extends StatefulWidget {
