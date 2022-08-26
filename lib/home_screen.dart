@@ -1,9 +1,7 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:personal_website/colours/colours.dart';
-import 'package:personal_website/widgets/title_box.dart';
 import 'package:personal_website/url_launcher.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -110,9 +108,9 @@ class HomeScreen extends StatelessWidget {
                       iconSize: 60,
                         color: Colors.white,
                         onPressed: () {
-                          const url = "https://drive.google.com/file/d/1mSXPUxhDqKOdrbyQESfGXZ6fbpFYkVfa/view?usp=sharing";
+                          const url = "https://drive.google.com/file/d/1WD-IgD3_Em_o00OOltehR-zyyOzZF8no/view?usp=sharing";
                           launchLink(url);
-                        }, icon: const Icon(Icons.email)),
+                        }, icon: const Icon(Icons.document_scanner)),
                     const Spacer(),
 
                   ],

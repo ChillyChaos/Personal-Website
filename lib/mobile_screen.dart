@@ -13,7 +13,17 @@ class MobileScreen extends StatelessWidget {
         shadowColor: Colors.transparent,
         backgroundColor: Colors.red,
       ),
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              buildHeader(),
+              buildMenuItems()
+            ],
+          )
+        ),
+      ),
       body: Container(
         child: Column(
           children: [
@@ -28,4 +38,31 @@ class MobileScreen extends StatelessWidget {
       ),
     );
   }
+
+  buildHeader() {}
+
+  Widget buildMenuItems() => Column(
+    children: [
+      ListTile(
+        leading: Icon(Icons.home),
+        title: Text("Home"),
+        onTap: () {},
+      ),
+      ListTile(
+        leading: Icon(Icons.home),
+        title: Text("Home"),
+        onTap: () {},
+      ),
+      ListTile(
+        leading: Icon(Icons.home),
+        title: Text("Home"),
+        onTap: () {},
+      ),
+      ListTile(
+        leading: Icon(Icons.home),
+        title: Text("Home"),
+        onTap: () {},
+      ),
+    ],
+  );
 }

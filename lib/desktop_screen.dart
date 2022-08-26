@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/about_screen.dart';
 import 'package:personal_website/colours/colours.dart';
+import 'package:personal_website/contact_screen.dart';
 import 'package:personal_website/home_screen.dart';
 import 'package:personal_website/logo.dart';
 import 'package:personal_website/projects_screen.dart';
@@ -90,7 +91,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
           backgroundColor: myFirstColor,
         ),
         body: ScrollablePositionedList.builder(
-          itemCount: 4,
+          itemCount: 5,
           itemBuilder: (BuildContext context, int index) {
             if (index == 0) {
               return HomeScreen();
@@ -102,16 +103,25 @@ class _DesktopScreenState extends State<DesktopScreen> {
               return ProjectsScreen();
             }
             if (index == 3) {
-              return Container(
-                color: Colors.grey,
-                height: 600,
-                child: Text("Contact"),
-              );
+              return ContactScreen();
             }
-            return Text("TESTER");
+            return Footer();
           },
           itemScrollController: itemController,
         ));
+  }
+
+  Widget Footer() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Spacer(),
+        Text("Made with ", style: TextStyle(color: Colors.white, fontSize: 20),),
+        IconButton(onPressed: () {}, icon: Image.network("https://img.icons8.com/fluency/48/000000/like.png")),
+        Text("with Flutter", style: TextStyle(color: Colors.white, fontSize: 20),),
+        Spacer()
+      ],
+    );
   }
 
   HeaderOption(String name) {

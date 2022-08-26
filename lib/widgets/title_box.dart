@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -39,7 +38,11 @@ class TitleBox extends StatelessWidget {
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                Icon(myIcon, size: 50,color: Colors.white,)
+                Icon(
+                  myIcon,
+                  size: 50,
+                  color: Colors.white,
+                )
               ],
             ),
           ),

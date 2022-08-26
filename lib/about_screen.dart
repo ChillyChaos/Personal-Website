@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:personal_website/colours/colours.dart';
 import 'package:personal_website/widgets/title_box.dart';
 
 class AboutScreen extends StatelessWidget {
@@ -43,7 +41,7 @@ class AboutScreen extends StatelessWidget {
                 "I also enjoy video games, just like most other tech enthusiasts"),
         AboutMeBoxes(
             "My Goal",
-            "Currently, I am looking for a position in the"
+            "Currently, I am looking for a junior/entry-level position in the"
                 " following areas: Frontend, Backend, Fullstack, Webapp "
                 "Development, Devops, QA Testing, Mobile Development. I enjoy "
                 "challenges that force me to think for myself, as I find myself "

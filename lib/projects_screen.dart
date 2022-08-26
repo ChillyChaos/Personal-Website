@@ -12,22 +12,27 @@ class ProjectsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> faceRace = [
-      "assets/images/facerace1.jpg",
+      "assets/images/facerace1.png",
+      "assets/images/facerace2.png",
+      "assets/images/facerace3.png",
+      "assets/images/facerace4.png",
+      "assets/images/facerace5.png",
+      "assets/images/facerace6.png",
     ];
 
     final List<String> myImages2 = [
-      // "assets/images/Greenscore_Screenshot.png",
-      // "assets/images/Greenscore_Screenshot2.png",
       "assets/images/greenscore1.png",
       "assets/images/greenscore2.png",
       "assets/images/greenscore3.png",
+      "assets/images/greenscore4.png",
+      "assets/images/greenscore5.png",
+      "assets/images/greenscore6.png",
     ];
 
     final List<String> myImages3 = [
-      "assets/images/UBC-OPTH_Screenshot.png",
-      "assets/images/UBC_Giving.png",
-      "assets/images/UBC_Giving2.png",
-      "assets/images/UBC_Giving3.png",
+      "assets/images/UBC-OPTH-1.png",
+      "assets/images/UBC-OPTH-2.png",
+      "assets/images/UBC-OPTH-3.png",
     ];
 
     const String greenscoreText = "Greenscore is a webapp I developed with my "
@@ -63,9 +68,10 @@ class ProjectsScreen extends StatelessWidget {
       children: [
         const TitleBox(title: "Projects", myIcon: Icons.gradient),
         projectCard(myImages2.length, "Greenscore",
-            "https://greenscore-app.web.app/#/", greenscoreText, myImages2),
-        projectCard2(faceRace.length, "FaceRace", "https://github.com/jshmartin/FaceRace", faceraceText, faceRace),
-        projectCard(myImages3.length, "UBC Dept. of Opthalmology", "https://ophthalmology.med.ubc.ca/", ubcText, myImages3)
+            "https://greenscore-app.web.app/#/", greenscoreText, myImages2, BoxFit.fitHeight),
+        projectCard2(faceRace.length, "FaceRace", "https://github.com/jshmartin/FaceRace", faceraceText, faceRace, BoxFit.fitHeight),
+        projectCard(myImages3.length, "UBC Dept. of Opthalmology", "https://ophthalmology.med.ubc.ca/", ubcText, myImages3, BoxFit.fitWidth
+        )
       ],
     );
   }
@@ -102,7 +108,7 @@ class ProjectsScreen extends StatelessWidget {
       );
 
   Widget projectCard(int length, String title, String link,
-      String projectContent, List<String> images) {
+      String projectContent, List<String> images, BoxFit myFit) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -113,7 +119,7 @@ class ProjectsScreen extends StatelessWidget {
               itemCount: length,
               itemBuilder: (context, index, realIndex) {
                 final myImage = images[index];
-                return buildImage(myImage, index);
+                return buildImage(myImage, index, myFit);
               },
               options: CarouselOptions(height: 400)),
         ),
@@ -122,7 +128,7 @@ class ProjectsScreen extends StatelessWidget {
   }
 
   Widget projectCard2(int length, String title, String link,
-      String projectContent, List<String> images) {
+      String projectContent, List<String> images, BoxFit myFit) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
@@ -132,7 +138,7 @@ class ProjectsScreen extends StatelessWidget {
               itemCount: length,
               itemBuilder: (context, index, realIndex) {
                 final myImage = images[index];
-                return buildImage(myImage, index);
+                return buildImage(myImage, index, myFit);
               },
               options: CarouselOptions(height: 400)),
         ),
@@ -141,13 +147,13 @@ class ProjectsScreen extends StatelessWidget {
     );
   }
 
-  Widget buildImage(String myImage, int index) => Container(
+  Widget buildImage(String myImage, int index, BoxFit fit) => Container(
         // margin: EdgeInsets.symmetric(horizontal: 12),
-        width: 400,
+        width: 280,
         color: Colors.white,
         child: Image.asset(
           myImage,
-          fit: BoxFit.fitHeight,
+          fit: fit,
         ),
       );
 }
