@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:personal_website/colours/colours.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:personal_website/constants/dimensions.dart';
 import 'package:personal_website/widgets/title_box.dart';
 import 'package:personal_website/url_launcher.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class ProjectsScreen extends StatelessWidget {
   const ProjectsScreen({Key? key}) : super(key: key);
@@ -64,16 +62,30 @@ class ProjectsScreen extends StatelessWidget {
         "and site navigation aspects according to client desires."
         "\n\n This project was done in WordPress.";
 
-    return Column(
-      children: [
-        const TitleBox(title: "Projects", myIcon: Icons.gradient),
-        projectCard(myImages2.length, "Greenscore",
-            "https://greenscore-app.web.app/#/", greenscoreText, myImages2, BoxFit.fitHeight),
-        projectCard2(faceRace.length, "FaceRace", "https://github.com/jshmartin/FaceRace", faceraceText, faceRace, BoxFit.fitHeight),
-        projectCard(myImages3.length, "UBC Dept. of Opthalmology", "https://ophthalmology.med.ubc.ca/", ubcText, myImages3, BoxFit.fitWidth
-        )
-      ],
-    );
+    if(MediaQuery.of(context).size.width < mobileWidth) {
+      return Column(
+        children: [
+          const TitleBox(title: "Projects", myIcon: Icons.gradient),
+          projectCardMobile(myImages2.length, "Greenscore",
+              "https://greenscore-app.web.app/#/", greenscoreText, myImages2, BoxFit.fitHeight),
+          projectCardMobile(faceRace.length, "FaceRace", "https://github.com/jshmartin/FaceRace", faceraceText, faceRace, BoxFit.fitHeight),
+          projectCardMobile(myImages3.length, "UBC Dept. of Opth.", "https://ophthalmology.med.ubc.ca/", ubcText, myImages3, BoxFit.fitWidth
+          )
+        ],
+      );
+    } else {
+      return Column(
+        children: [
+          const TitleBox(title: "Projects", myIcon: Icons.gradient),
+          projectCard(myImages2.length, "Greenscore",
+              "https://greenscore-app.web.app/#/", greenscoreText, myImages2, BoxFit.fitHeight),
+          projectCard2(faceRace.length, "FaceRace", "https://github.com/jshmartin/FaceRace", faceraceText, faceRace, BoxFit.fitHeight),
+          projectCard(myImages3.length, "UBC Dept. of Opthalmology", "https://ophthalmology.med.ubc.ca/", ubcText, myImages3, BoxFit.fitWidth
+          )
+        ],
+      );
+    }
+
   }
 
   Widget infoCard(String title, String url, String content) => Column(
@@ -146,6 +158,56 @@ class ProjectsScreen extends StatelessWidget {
       ],
     );
   }
+
+  Widget projectCardMobile(int length, String title, String link,
+      String projectContent, List<String> images, BoxFit myFit) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        SizedBox(
+          width: 500,
+          child: CarouselSlider.builder(
+              itemCount: length,
+              itemBuilder: (context, index, realIndex) {
+                final myImage = images[index];
+                return buildImage(myImage, index, myFit);
+              },
+              options: CarouselOptions(height: 400)),
+        ),
+        infoCardMobile(title, link, projectContent),
+      ],
+    );
+  }
+
+  Widget infoCardMobile(String title, String url, String content) => Column(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Row(
+        children: [
+          Text(
+            title,
+            style: const TextStyle(
+                color: Colors.white,
+                fontSize: 40,
+                fontWeight: FontWeight.bold),
+          ),
+          IconButton(
+              iconSize: 30,
+              color: Colors.white,
+              onPressed: () {
+                launchLink(url);
+              },
+              icon: const Icon(Icons.open_in_browser))
+        ],
+      ),
+      SizedBox(
+          height: 500,
+          child: Text(
+            content,
+            style: const TextStyle(fontSize: 20, color: Colors.white),
+          )),
+    ],
+  );
 
   Widget buildImage(String myImage, int index, BoxFit fit) => Container(
         // margin: EdgeInsets.symmetric(horizontal: 12),

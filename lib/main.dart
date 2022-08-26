@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       darkTheme: Theme.of(context).copyWith(
         scaffoldBackgroundColor: myFirstColor,
         primaryColor: myFirstColor,
-        canvasColor: myBackgroundColor,
+        canvasColor: myThirdColor,
         textTheme: GoogleFonts.robotoCondensedTextTheme()
       ),
       home: Home(),

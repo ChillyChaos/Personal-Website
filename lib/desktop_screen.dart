@@ -79,7 +79,7 @@ class _DesktopScreenState extends State<DesktopScreen> {
                   },
                   child: HeaderOption("CONTACT")),
               ElevatedButton(onPressed: () {
-                const url = "https://drive.google.com/file/d/1mSXPUxhDqKOdrbyQESfGXZ6fbpFYkVfa/view?usp=sharing";
+                const url = "https://drive.google.com/file/d/1WD-IgD3_Em_o00OOltehR-zyyOzZF8no/view?usp=sharing";
                 launchResume(url);
 
               }, child: Text("RESUME", style: TextStyle(fontSize: 20),))

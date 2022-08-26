@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:personal_website/url_launcher.dart';
 import 'package:personal_website/widgets/title_box.dart';
-import 'package:http/http.dart' as http;
+
+import 'constants/dimensions.dart';
 
 class ContactScreen extends StatelessWidget {
   const ContactScreen({Key? key}) : super(key: key);
@@ -12,37 +13,52 @@ class ContactScreen extends StatelessWidget {
     final controllerSubject = TextEditingController();
     final controllerMessage = TextEditingController();
 
-    return Container(
-      child: Column(
-        children: [
-          const TitleBox(title: "Say Hi!", myIcon: Icons.email),
-          Container(
-            child: Column(
-              children: [
-                buildTextField(title: "Subject", controller: controllerSubject),
-                const SizedBox(
-                  height: 20,
-                ),
-                buildTextField(title: "Message", controller: controllerMessage, maxLines: 20),
-                const SizedBox(
-                  height: 20,
-                ),
-                ElevatedButton(
-                    onPressed: () => launchEmail(
-                        subject: controllerSubject.text,
-                        message: controllerMessage.text,
-                        email: controllerTo.text),
-                    style: ElevatedButton.styleFrom(fixedSize: const Size(200, 30)),
-                    child: const Text("SEND", style: const TextStyle(fontSize: 20),))
-              ],
+    if (MediaQuery
+        .of(context)
+        .size
+        .width > mobileWidth) {
+      return Container(
+        child: Text("CONTACT"),
+      );
+    } else {
+      return Container(
+        child: Column(
+          children: [
+            const TitleBox(title: "Say Hi!", myIcon: Icons.email),
+            Container(
+              child: Column(
+                children: [
+                  buildTextField(
+                      title: "Subject", controller: controllerSubject),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  buildTextField(title: "Message",
+                      controller: controllerMessage,
+                      maxLines: 20),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                      onPressed: () =>
+                          launchEmail(
+                              subject: controllerSubject.text,
+                              message: controllerMessage.text,
+                              email: controllerTo.text),
+                      style: ElevatedButton.styleFrom(
+                          fixedSize: const Size(200, 30)),
+                      child: const Text(
+                        "SEND", style: const TextStyle(fontSize: 20),))
+                ],
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 50,
-          )
-        ],
-      ),
-    );
+            const SizedBox(
+              height: 50,
+            )
+          ],
+        ),
+      );
+    }
   }
 
   Widget buildTextField(
@@ -84,3 +100,4 @@ class ContactScreen extends StatelessWidget {
     launchLink(url);
   }
 }
+
