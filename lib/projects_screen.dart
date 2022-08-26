@@ -62,7 +62,7 @@ class ProjectsScreen extends StatelessWidget {
         "and site navigation aspects according to client desires."
         "\n\n This project was done in WordPress.";
 
-    if(MediaQuery.of(context).size.width < mobileWidth) {
+    if(MediaQuery.of(context).size.width < tabletWidth) {
       return Column(
         children: [
           const TitleBox(title: "Projects", myIcon: Icons.gradient),
@@ -181,8 +181,10 @@ class ProjectsScreen extends StatelessWidget {
 
   Widget infoCardMobile(String title, String url, String content) => Column(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
             title,
@@ -200,12 +202,16 @@ class ProjectsScreen extends StatelessWidget {
               icon: const Icon(Icons.open_in_browser))
         ],
       ),
-      SizedBox(
-          height: 500,
-          child: Text(
-            content,
-            style: const TextStyle(fontSize: 20, color: Colors.white),
-          )),
+      Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: SizedBox(
+            height: 500,
+            child: Text(
+              content,
+              style: const TextStyle(fontSize: 20, color: Colors.white),
+              textAlign: TextAlign.start,
+            )),
+      ),
     ],
   );
 

@@ -103,13 +103,11 @@ class AboutScreen extends StatelessWidget {
             ),
             SizedBox(
                 height: 500,
-                child: Flexible(
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      bodyText,
-                      style: TextStyle(fontSize: 20, color: Colors.white),
-                    ),
+                child: Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: Text(
+                    bodyText,
+                    style: TextStyle(fontSize: 20, color: Colors.white),
                   ),
                 )),
           ],

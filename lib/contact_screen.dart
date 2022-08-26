@@ -9,7 +9,6 @@ class ContactScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controllerTo = TextEditingController();
     final controllerSubject = TextEditingController();
     final controllerMessage = TextEditingController();
 
@@ -18,7 +17,40 @@ class ContactScreen extends StatelessWidget {
         .size
         .width > mobileWidth) {
       return Container(
-        child: Text("CONTACT"),
+        child: Column(
+          children: [
+            const TitleBox(title: "Say Hi!", myIcon: Icons.email),
+            Container(
+              child: Column(
+                children: [
+                  buildTextField(
+                      title: "Subject", controller: controllerSubject),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  buildTextField(title: "Message",
+                      controller: controllerMessage,
+                      maxLines: 20),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ElevatedButton(
+                      onPressed: () =>
+                          launchEmail(
+                              subject: controllerSubject.text,
+                              message: controllerMessage.text,),
+                      style: ElevatedButton.styleFrom(
+                          fixedSize: const Size(200, 30)),
+                      child: const Text(
+                        "SEND", style: const TextStyle(fontSize: 20),))
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 50,
+            )
+          ],
+        ),
       );
     } else {
       return Container(
@@ -43,8 +75,7 @@ class ContactScreen extends StatelessWidget {
                       onPressed: () =>
                           launchEmail(
                               subject: controllerSubject.text,
-                              message: controllerMessage.text,
-                              email: controllerTo.text),
+                              message: controllerMessage.text,),
                       style: ElevatedButton.styleFrom(
                           fixedSize: const Size(200, 30)),
                       child: const Text(
@@ -92,11 +123,10 @@ class ContactScreen extends StatelessWidget {
       );
 
   Future launchEmail({
-    String email = "josh123198@gmail.com",
     required String subject,
     required String message,
   }) async {
-    String url = "mailto:$email?subject=${Uri.encodeFull(subject)}&body=${Uri.encodeFull(message)}";
+    String url = "mailto:josh123198@gmail.com?subject=${Uri.encodeFull(subject)}&body=${Uri.encodeFull(message)}";
     launchLink(url);
   }
 }
