@@ -26,7 +26,7 @@ class HomeScreen extends StatelessWidget {
                 borderRadius: const BorderRadius.all(
                     const Radius.circular(20)),
                 child: Image.asset(
-                  "images/profile.jpg",
+                  "assets/images/profile.jpg",
                   scale: 7,
                 ),
               ),
@@ -150,7 +150,7 @@ class HomeScreen extends StatelessWidget {
                     borderRadius: const BorderRadius.all(
                         const Radius.circular(20)),
                     child: Image.asset(
-                      "images/profile.jpg",
+                      "assets/images/profile.jpg",
                       scale: 7,
                     ),
                   ),

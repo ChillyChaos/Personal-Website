@@ -89,7 +89,7 @@ class MobileScreen extends StatelessWidget {
                 leading: Icon(Icons.document_scanner),
                 title: Text("Resume"),
                 onTap: () {
-                  const url = "https://drive.google.com/file/d/1mSXPUxhDqKOdrbyQESfGXZ6fbpFYkVfa/view?usp=sharing";
+                  const url = "https://drive.google.com/file/d/1WD-IgD3_Em_o00OOltehR-zyyOzZF8no/view?usp=sharing";
                   launchLink(url);
                 },
               ),
